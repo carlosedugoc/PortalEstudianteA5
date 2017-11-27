@@ -1,0 +1,31 @@
+
+
+<body id="loginPage">
+    <div class="overlayLogin"></div>
+    <div class="container-fluid">
+        <div class="boxLogin">
+            <div id="formLogin">
+                <h2>Iniciar sesión</h2>
+                <form>
+                    <div class="row">
+                        <div class="form-group col-xs-12">
+                          <select class="form-control"  (change)="loginDev($event.target.value)">
+                            <option value="0">Seleccione Usuario</option>
+                            <option value="su">Administrador Ilumno</option>
+                            <option value="AA">Administrador Areandina</option>
+                            <option value="Poli">Administrador Politécnico</option>
+                            <option value="123456">Carlos Eduardo González Cortes</option>
+                            <option value="654123">Diana Marcela Bojaca</option>
+                          </select>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
+                        <div class="form-group col-xs-12 boxIngresarLogin">
+                            <button type="submit" class="btn btn-default btnFirstAccion" id="submitLogin">INGRESAR<i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                        </div>
+                    </div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
