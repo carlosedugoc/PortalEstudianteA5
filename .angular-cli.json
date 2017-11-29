@@ -28,8 +28,8 @@
         "assets/js/jquery.min.js",
         "assets/js/bootstrap.min.js",
         "assets/js/bootstrap-select.min.js",
+        "assets/js/masonry.js",
         "assets/js/main.js",
-        "../node_modules/masonry-layout/dist/masonry.pkgd.js",
         "scripts.js"
       ],
       "environmentSource": "environments/environment.ts",
