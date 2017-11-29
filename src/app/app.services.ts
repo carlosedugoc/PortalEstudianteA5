@@ -1,4 +1,4 @@
-export { AdministracionService } from './services/administracion.service'
+export { AdministrationService } from './services/administration.service'
 export { BannerService } from './services/banner.service'
 export { GlobalService } from './services/global.service'
 export { StudentService } from './services/student.service'

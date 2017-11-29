@@ -1,104 +1,83 @@
-
-
-<nav class="menu" id="accordion">
-    <ul class="panel">
-        <a class="seccionPadre navPrincipal active" data-parent="#accordion" data-toggle="collapse" href="#collapse0">
-            <li><i class="fa fa-home" aria-hidden="true"></i><span>PRINCIPAL</span></li>
-        </a>
-        <ul class="collapse" id="collapse0">
-        </ul>
-        <!-- ACCORDION1 -->
-        <a class="seccionPadre navPagos" data-parent="#accordion" data-toggle="collapse" href="#collapse1">
-            <li><i class="fa fa-money" aria-hidden="true"></i><span>PAGOS</span></li>
-        </a>
-        <ul class="collapse" id="collapse1">
-            <a href="" class="active">
-                <li><span>Cuenta 1</span></li>
-            </a>
-            <a href="">
-                <li><span>Cuenta 2</span></li>
-            </a>
-        </ul>
-        <!-- ACCORDION2 -->
-        <a class="seccionPadre navConsulta" data-parent="#accordion" data-toggle="collapse" href="#collapse2">
-            <li><i class="fa fa-commenting" aria-hidden="true"></i><span>CONSULTA</span></li>
-        </a>
-        <ul class="collapse" id="collapse2">
-            <nav id="subAccordion2">
-                <ul class="panel">
-                    <a class="accordionHijo" data-parent="#subAccordion2" data-toggle="collapse" href="#collapseTwoOne">
-                        <li><span>Académica</span><i class="fa fa-chevron-down" aria-hidden="true"></i></li>
+<section id="mainNav">
+        <nav class="menu" id="accordion">
+    
+            <ul class="panel" id="panel">
+    
+    
+                <a class="seccionPadre navPrincipal active" data-parent="#accordion" data-toggle="collapse" href="" (click)="goPrincipal()">
+                    <li>
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <span>{{'Menu.LabelPrincipal' | translate}}</span>
+                    </li>
+                </a>
+                <!-- <ul class="collapse" id="collapse0">
+            </ul> -->
+    
+                <a *ngIf="user != undefined && user.rol == '1'" class="seccionPadre navPagos active" data-parent="#accordion" data-toggle="collapse"
+                    href="#collapse0">
+                    <li>
+                        <i class="fa fa-cog" aria-hidden="true"></i>
+                        <span>{{'Menu.LabelAdministracion' | translate}}</span>
+                    </li>
+                </a>
+                <ul class="collapse" id="collapse0">
+                    <a [routerLink]="['administration']" data-toggle="modal" href="#modal-id" routerLinkActive="active">
+                        <li>
+                            <span>{{'Menu.LabelConfiguracionServicios' | translate}}</span>
+                        </li>
                     </a>
-                    <ul class="collapse" id="collapseTwoOne">
-                        <a href="" class="active">
-                            <li><span>Cuenta 1</span></li>
-                        </a>
-                        <a href="">
-                            <li><span>Cuenta 2</span></li>
-                        </a>
-                    </ul>
-                    <a class="accordionHijo" data-parent="#subAccordion2" data-toggle="collapse" href="#collapseTwoTwo">
-                        <li><span>Financiera</span><i class="fa fa-chevron-down" aria-hidden="true"></i></li>
+                    <a [routerLink]="['univ-management']" routerLinkActive="active" href="" *ngIf="user != undefined && user.university == '0'">
+                        <li>
+                            <span>{{'Menu.LabelConfiguracionUniversidades' | translate}}</span>
+                        </li>
                     </a>
-                    <ul class="collapse" id="collapseTwoTwo">
-                        <a href="">
-                            <li><span>Cuenta 1</span></li>
-                        </a>
-                        <a href="">
-                            <li><span>Cuenta 2</span></li>
-                        </a>
-                    </ul>
+                    <a [routerLink]="['file-loading']" routerLinkActive="active">
+                        <li>
+                            <span>{{'Menu.LabelReglamentos' | translate}}</span>
+                        </li>
+                    </a>
                 </ul>
-            </nav>
-        </ul>
-        <!-- ACCORDION3 -->
-        <a class="seccionPadre navSolicitud" data-parent="#accordion" data-toggle="collapse" href="#collapse3">
-            <li><i class="fa fa-send" aria-hidden="true"></i><span>SOLICITUD</span></li>
-        </a>
-        <ul class="collapse" id="collapse3">
-            <nav id="subAccordion3">
-                <ul class="panel">
-                    <a class="accordionHijo" data-parent="#subAccordion3" data-toggle="collapse" href="#collapseThreeOne">
-                        <li><span>Académica</span><i class="fa fa-chevron-down" aria-hidden="true"></i></li>
+    
+                <!-- INICIO ACCORDION -->
+    
+                <div id='divItem' *ngFor="let padre of menu; let padreIdx = index">
+                    <a *ngIf="user != undefined && user.rol == '2'" id="wrap" class="seccionPadre {{padre.clase}}" data-parent="#accordion" data-toggle="collapse"
+                        href="#collapse{{padreIdx + 1}}">
+                        <li>
+                            <i class="fa fa-{{padre.logo}}" aria-hidden="true"></i>
+                            <span>{{padre.name}}</span>
+                        </li>
                     </a>
-                    <ul class="collapse" id="collapseThreeOne">
-                        <a href="" class="active">
-                            <li><span>Cuenta 1</span></li>
-                        </a>
-                        <a href="">
-                            <li><span>Cuenta 2</span></li>
-                        </a>
+                    <ul *ngIf="user != undefined && user.rol == '2'" id="wrap" class="collapse" id="collapse{{padreIdx + 1}}">
+                        <nav id="subAccordion2">
+                            <ul *ngFor="let hijo of padre.data; let idxHijo = index" class="panel">
+                                <a *ngIf="hijo.data" class="accordionHijo" data-toggle="collapse" href="#collapse{{padreIdx + 1}}{{idxHijo}}">
+                                    <li>
+                                        <span>{{hijo.name}}</span>
+                                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                    </li>
+                                </a>
+                                <!-- <a *ngIf="!hijo.data" class="accordionHijo" data-toggle="collapse" href="hijo.url"> -->
+                                <a *ngIf="!hijo.data" class="accordionHijo" data-toggle="collapse">
+                                    <li>
+                                        <span>{{hijo.name}}</span>
+                                    </li>
+                                </a>
+                                <ul class="collapse" id="collapse{{padreIdx + 1}}{{idxHijo}}">
+                                    <a *ngFor="let nieto of hijo.data">
+                                        <!-- <a *ngFor="let nieto of hijo.data" href="nieto.url" class="active"> -->
+                                        <li>
+                                            <span>{{nieto.name}}</span>
+                                        </li>
+                                    </a>
+                                </ul>
+                            </ul>
+                        </nav>
                     </ul>
-                    <a class="accordionHijo" data-parent="#subAccordion3" data-toggle="collapse" href="#collapseThreeTwo">
-                        <li><span>Financiera</span><i class="fa fa-chevron-down" aria-hidden="true"></i></li>
-                    </a>
-                    <ul class="collapse" id="collapseThreeTwo">
-                        <a href="">
-                            <li><span>Cuenta 1</span></li>
-                        </a>
-                        <a href="">
-                            <li><span>Cuenta 2</span></li>
-                        </a>
-                    </ul>
-                </ul>
-            </nav>
-        </ul>
-        <!-- ACCORDION4 -->
-        <a class="seccionPadre navPortales" data-parent="#accordion" data-toggle="collapse" href="#collapse4">
-            <li><i class="fa fa-laptop" aria-hidden="true"></i><span>PORTALES</span></li>
-        </a>
-        <ul class="collapse" id="collapse4">
-            <a href="">
-                <li><span>Cuenta 1</span></li>
-            </a>
-            <a href="">
-                <li><span>Cuenta 2</span></li>
-            </a>
-        </ul>
-        <a class="seccionPadre navSedes" href="#collapse5" data-parent="#accordion" data-toggle="collapse">
-            <li><i class="fa fa-map-marker" aria-hidden="true"></i><span>SEDES</span></li>
-        </a>
-        <ul class="collapse" id="collapse5">
-        </ul>
-    </ul>
-</nav>
+                </div>
+    
+                <!-- FIN ACCORDION -->
+    
+            </ul>
+        </nav>
+    </section>

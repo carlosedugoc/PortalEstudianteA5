@@ -6,8 +6,8 @@ import { List } from "linqts";
 declare var llamarEventosMainJS: any
 
 @Component({
-  selector: 'app-carga-archivos',
-  templateUrl: './carga-archivos.component.html',
+  selector: 'app-manage-regulations',
+  templateUrl: './manage-regulations.component.html',
   providers: [UniversityService]
 })
 export class ManageRegulationsComponent implements OnChanges, OnInit {

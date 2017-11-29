@@ -1,6 +1,6 @@
 import { Http } from '@angular/http';
 import { List } from "linqts";
-import * as configuration from '../../assets/config.json';
+import * as configuration from '../../../assets/config.json';
 
 export class GeneralUtils {
     constructor(private http: Http) {

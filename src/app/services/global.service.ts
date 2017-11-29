@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { User, Student, Menu, AcademicRecords } from "../app.models";
+import { User, Student, Menu, AcademicRecords, AcademicProgram  } from "../app.models";
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { AcademicProgram } from '../models/academic-program';
 
 //// Esta clase permite la comunicación entre los componentes.
 @Injectable()
