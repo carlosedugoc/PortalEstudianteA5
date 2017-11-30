@@ -1,6 +1,6 @@
 //Módulos
 import {BrowserModule }from '@angular/platform-browser'; 
-import {NgModule }from '@angular/core'; 
+import {NgModule, APP_INITIALIZER }from '@angular/core'; 
 import {HttpModule }from "@angular/http"; 
 import {HttpClientModule, HttpClient }from '@angular/common/http'; 
 //MODULOS
@@ -11,6 +11,7 @@ import {TranslateHttpLoader }from '@ngx-translate/http-loader';
 import {OAuthModule }from 'angular-oauth2-oidc'; 
 //SERVICIOS
 import { GlobalService } from "./services/global.service";
+import { AppConfiguration } from "./app.configuration";
 //ESPECIALES
 import {BASE_URL} from "./app.tokens";
 import { APP_CONFIG, AppConfig } from './app.config';
@@ -37,6 +38,10 @@ import { StudentInfoComponent } from "./components/students/student-info/student
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
+
+export function initConfig(config: AppConfiguration){
+  return () => config.load() 
+ }
 
 @NgModule({
   declarations: [
@@ -71,7 +76,17 @@ export function createTranslateLoader(http: HttpClient) {
   }),
   OAuthModule.forRoot()
   ],
-  providers: [ GlobalService ],
+  providers: [ 
+    GlobalService ,
+    AppConfiguration,
+    { 
+      provide: APP_INITIALIZER, 
+      useFactory: initConfig, 
+      deps: [AppConfiguration], 
+      multi: true 
+    }
+  
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

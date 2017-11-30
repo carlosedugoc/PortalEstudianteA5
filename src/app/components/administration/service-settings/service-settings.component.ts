@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 //SERVICES
-import { AdministrationService, BannerService, GlobalService } from "../../../app.services";
+import { AdministrationService, BannerService, GlobalService, AppConfiguration } from "../../../app.services";
 //MODELS
 import { Servicio, Item, UrlServicios, User, Status, Level, Modality  } from "../../../app.models";
 //CROSS-CUTTING
@@ -39,13 +39,16 @@ export class ServiceSettingsComponent {
     public idUser: string
     public utilidades: GeneralUtils
     public serv: boolean = false
+    public urlServices: any
+    public urlUniversityServices: any
   
   
     constructor(private adminService: AdministrationService,
       private bannerService: BannerService,
       private http: Http,
-      private globalService: GlobalService) {
-  
+      private globalService: GlobalService,
+      private config:AppConfiguration) {
+      this.urlServices = this.config.getConfig('servicios')
       this.utilidades = new GeneralUtils(this.http)
       this.loading = false
       this.show_table = false
@@ -95,7 +98,7 @@ export class ServiceSettingsComponent {
     getServicios(IdUniversidad: String) {
       const promesa = new Promise((resolve, reject) => {
         this.servicios = []
-        this.adminService.getServicios(IdUniversidad, this.utilidades.getServiceByName('UrlApiRest')).subscribe(data => {
+        this.adminService.getServicios(IdUniversidad, this.urlServices['UrlApiRest']).subscribe(data => {
           this.servicios = data
           this.serv = false
           if (this.servicios.length == 0) { this.serv = true }
