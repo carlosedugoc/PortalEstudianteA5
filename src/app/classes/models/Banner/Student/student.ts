@@ -1,7 +1,4 @@
-import { Contact } from "./contact";
-import { Residence } from "./residence";
-import { AcademicRecords } from "./academic-records";
-import { AcademicProgram } from "../../academic-program";
+import { AcademicRecords, AcademicProgram, Residence, Contact } from "../../../../app.models";
 
 export class Student {
     constructor(
