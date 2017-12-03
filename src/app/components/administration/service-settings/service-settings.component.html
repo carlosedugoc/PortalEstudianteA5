@@ -66,24 +66,24 @@
 
                   <div class="tab-content" *ngIf="!loading && show_table && !serv">
                       <div role="tabpanel" class="tab-pane fade in active" id="tab1">
-                          <app-lista-servicios [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
+                          <app-services-list [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
                               [tipos]="tipos" [servicios]="servicios | filterService:1">
-                          </app-lista-servicios>
+                          </app-services-list>
                       </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab2">
-                          <app-lista-servicios [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
+                          <app-services-list [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
                               [tipos]="tipos" [servicios]="servicios | filterService:2">
-                          </app-lista-servicios>
+                          </app-services-list>
                       </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab3">
-                          <app-lista-servicios [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
+                          <app-services-list [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
                               [tipos]="tipos" [servicios]="servicios | filterService:3">
-                          </app-lista-servicios>
+                          </app-services-list>
                       </div>
                       <div role="tabpanel" class="tab-pane fade" id="tab4">
-                          <app-lista-servicios [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
+                          <app-services-list [total_modalidades]="total_modalidades" [total_niveles]="total_niveles" [total_estados]="total_estados"
                               [tipos]="tipos" [servicios]="servicios | filterService:4">
-                          </app-lista-servicios>
+                          </app-services-list>
                       </div>
                   </div>
               </div>
