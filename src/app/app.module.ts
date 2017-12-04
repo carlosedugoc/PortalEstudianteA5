@@ -33,7 +33,8 @@ import { HeaderComponent } from './components/shared/header/header.component'
 import { UserComponent } from './components/shared/user/user.component'
 import { BannerIframeComponent } from "./components/students/banner-iframe/banner-iframe.component";
 import { StudentInfoComponent } from "./components/students/student-info/student-info.component";
-import { ServicesListComponent } from './components/administration/services-list/services-list.component';
+import { ServicesListComponent } from './components/administration/services-list/services-list.component;
+import { MissingServicesPipe } from './pipes/missing-services.pipe'';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -62,7 +63,8 @@ export function initConfig(config: AppConfiguration){
     GetFileNameOfPathPipe,
     BannerIframeComponent,
     StudentInfoComponent,
-    ServicesListComponent
+    ServicesListComponen,
+    MissingServicesPipet
   ],
   imports: [
     BrowserModule,
